@@ -1,38 +1,393 @@
-.App {
-  text-align: center;
+:root {
+  --color-primary: #1d9bf0;
+  --color-primary-hover: #1a8cd8;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f7f9fa;
+  --color-border: #eff3f4;
+  --color-text: #0f1419;
+  --color-text-secondary: #536471;
+  --color-error: #f4212e;
+  --color-error-bg: #fef2f2;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+  --max-width: 600px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg-secondary);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: rgba(15, 20, 25, 0.1);
+}
+
+.btn-full {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+/* ── Auth Pages ─────────────────────────────────────────── */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #e8f5fe 0%, #f7f9fa 100%);
+}
+
+.auth-card {
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-lg);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.auth-header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.auth-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Forms ──────────────────────────────────────────────── */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.form-group input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.15);
+}
+
+.form-group input.input-error {
+  border-color: var(--color-error);
+}
+
+.form-group input.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(244, 33, 46, 0.15);
+}
+
+.error-message {
+  display: block;
+  color: var(--color-error);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* ── Alerts ─────────────────────────────────────────────── */
+
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.alert-error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid rgba(244, 33, 46, 0.2);
+}
+
+/* ── Tweets Page ────────────────────────────────────────── */
+
+.tweets-page {
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  color: var(--color-primary);
+}
+
+.header-left h1 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ── Tweets Main ────────────────────────────────────────── */
+
+.tweets-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: var(--color-bg);
+  min-height: calc(100vh - 57px);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+/* ── Tweet Form ─────────────────────────────────────────── */
+
+.tweet-form {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tweet-form-inner {
+  margin-bottom: 12px;
+}
+
+.tweet-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.tweet-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.15);
+}
+
+.tweet-input.input-error {
+  border-color: var(--color-error);
+}
+
+.tweet-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.char-count {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+/* ── Tweet Cards ────────────────────────────────────────── */
+
+.tweets-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.15s;
+}
+
+.tweet-card:hover {
+  background: var(--color-bg-secondary);
+}
+
+.tweet-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.tweet-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tweet-author {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.tweet-text {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  word-wrap: break-word;
+}
+
+.tweet-text code {
+  background: var(--color-bg-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* ── States ─────────────────────────────────────────────── */
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 24px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .tweets-main {
+    border-left: none;
+    border-right: none;
+  }
+
+  .header-content {
+    padding: 10px 12px;
+  }
+
+  .user-name {
+    display: none;
   }
 }
